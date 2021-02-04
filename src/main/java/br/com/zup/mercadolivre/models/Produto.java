@@ -48,15 +48,19 @@ public class Produto {
 	@OneToMany(mappedBy = "produto",cascade = CascadeType.ALL)
 	private List<Caracteristica> caracteristicas = new ArrayList<>();
 	
+	@ManyToOne
+	private Usuario usuario;
+	
 	@Deprecated
 	public Produto() {}
 	
-	public Produto(String nome, BigDecimal valor, int quantidade, String descricao, Categoria categoria) {
+	public Produto(String nome, BigDecimal valor, int quantidade, String descricao, Categoria categoria, Usuario usuario) {
 		this.nome = nome;
 		this.valor = valor;
 		this.quantidade = quantidade;
 		this.descricao = descricao;
 		this.categoria = categoria;
+		this.usuario = usuario;
 	}
 
 	public Long getId() {
@@ -89,5 +93,9 @@ public class Produto {
 
 	public List<Caracteristica> getCaracteristicas() {
 		return caracteristicas;
+	}
+	
+	public Usuario getUsuario() {
+		return this.usuario;
 	}
 }

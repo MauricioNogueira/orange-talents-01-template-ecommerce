@@ -17,6 +17,7 @@ import br.com.zup.mercadolivre.customvalidation.ExistsId;
 import br.com.zup.mercadolivre.models.Caracteristica;
 import br.com.zup.mercadolivre.models.Categoria;
 import br.com.zup.mercadolivre.models.Produto;
+import br.com.zup.mercadolivre.models.Usuario;
 import br.com.zup.mercadolivre.repository.CategoriaRepository;
 
 public class CadastroProdutoRequest {
@@ -86,16 +87,14 @@ public class CadastroProdutoRequest {
 				+ "]";
 	}
 
-	public Produto toModel(CategoriaRepository categoriaRepository) {
+	public Produto toModel(CategoriaRepository categoriaRepository, Usuario usuario) {
 		Optional<Categoria> optional = categoriaRepository.findById(categoriaId);
 		
 		Categoria categoria = optional.get();
 		
 		List<Caracteristica> listaCaracteristicas = new ArrayList<>();
-		Produto produto = new Produto(this.nome, this.valor, this.quantidade, this.descricao, categoria);
-		
-		System.out.println("Deu merda");
-		
+		Produto produto = new Produto(this.nome, this.valor, this.quantidade, this.descricao, categoria, usuario);
+				
 		this.caracteristicas.forEach(caracteristica -> {
 			listaCaracteristicas.add(new Caracteristica(caracteristica.getNome(), caracteristica.getDescricao(), produto));
 		});
