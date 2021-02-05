@@ -42,8 +42,6 @@ public class JWTTokenFilter extends OncePerRequestFilter {
 		String token = headerAuthorization.substring(7);
 		boolean isValid = this.jwtTokenUtil.validate(token);
 		
-		System.out.println("Token is valid: "+isValid);
-		
 		if (isValid) {
 			String username = this.jwtTokenUtil.getUsername(token);
 			

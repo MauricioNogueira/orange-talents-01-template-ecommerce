@@ -1,35 +1,32 @@
 package br.com.zup.mercadolivre.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
-public class Caracteristica {
+public class Imagem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
-	private String nome;
+	private String link;
 	
-	@NotBlank
-	private String descricao;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@NotNull
+	@ManyToOne
 	private Produto produto;
 	
 	@Deprecated
-	public Caracteristica() {}
+	public Imagem() {}
 	
-	public Caracteristica(String nome, String descricao, Produto produto) {
-		this.nome = nome;
-		this.descricao = descricao;
+	public Imagem(String link, Produto produto) {
+		this.link = link;
 		this.produto = produto;
 	}
 
@@ -37,11 +34,11 @@ public class Caracteristica {
 		return id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getLink() {
+		return link;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public Produto getProdutoId() {
+		return produto;
 	}
 }

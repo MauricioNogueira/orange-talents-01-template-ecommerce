@@ -48,6 +48,9 @@ public class Produto {
 	@OneToMany(mappedBy = "produto",cascade = CascadeType.ALL)
 	private List<Caracteristica> caracteristicas = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "produto")
+	private List<Imagem> imagens;
+	
 	@ManyToOne
 	private Usuario usuario;
 	
@@ -97,5 +100,9 @@ public class Produto {
 	
 	public Usuario getUsuario() {
 		return this.usuario;
+	}
+	
+	public List<Imagem> getImagens() {
+		return this.imagens;
 	}
 }
