@@ -9,13 +9,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ExistsFileValidator implements ConstraintValidator<ExistsFile, List<MultipartFile>> {
 	
-	private int totalEncontrado;
+	private int totalEncontrado = 0;
 
 	@Override
 	public boolean isValid(List<MultipartFile> value, ConstraintValidatorContext context) {
 		if (value != null) {			
-			System.out.println("resultado: "+value.isEmpty());
-			
 			value.forEach(imagem -> {
 				if (imagem.getSize() != 0) {
 					totalEncontrado++;
